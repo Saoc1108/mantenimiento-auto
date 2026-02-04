@@ -33,10 +33,3 @@ Procesamiento de Datos en Tiempo Real: Implementé funciones de agregación (usa
 Arquitectura Desacoplada: Utilicé Custom Hooks para separar la lógica de negocio (operaciones de datos) de los componentes de la interfaz, facilitando el mantenimiento y futuras migraciones a un backend real (Supabase/Firebase).
 
 UX Responsiva en Dashboards: Logré una interfaz que adapta tablas de datos complejas a pantallas móviles sin perder la facilidad de uso, utilizando utilidades avanzadas de Tailwind CSS.
-
-🚀 Instalación y Uso
-Clonar el repositorio: git clone [url-del-repo]
-
-Instalar dependencias: npm install
-
-Lanzar entorno de desarrollo: npm run dev
