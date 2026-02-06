@@ -1,73 +1,42 @@
-# React + TypeScript + Vite
+# 🚗 Car Maintenance Manager - "La Mosca" Edition
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicación web profesional para el control técnico y financiero de mantenimientos vehiculares. Este proyecto nace de una necesidad real: gestionar la restauración y el cuidado preventivo de un **Chevrolet Chevy 2010 (Corsa III)** con motor 1.6L SFI, apodado "La Mosca".
 
-Currently, two official plugins are available:
+## 🔗 Demo en Vivo
+[Explorar la Aplicación](https://saoc1108.github.io/mantenimiento-auto/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🛠 Stack Tecnológico
+* **Core:** React 18 + TypeScript (Vite).
+* **Estilos:** Tailwind CSS (Diseño responsivo y moderno).
+* **Visualización de Datos:** Recharts (Gráficos analíticos de gastos).
+* **Iconografía:** Lucide React.
+* **CI/CD:** GitHub Actions para despliegue automatizado.
 
-## React Compiler
+## 💡 Características Clave
+1.  **Dashboard de Salud:** Algoritmo que calcula el estado de componentes críticos (aceite, filtros, bujías) basado en el kilometraje actual vs. último servicio.
+2.  **Gestión Integral (CRUD):** Registro detallado de servicios con validación estricta de tipos para fechas, costos y categorías.
+3.  **Análisis Financiero:** Visualización dinámica de la inversión acumulada y mensual mediante gráficos interactivos.
+4.  **Soberanía de Datos:** Sistema de backup que permite exportar e importar la base de datos completa en formato JSON.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🧠 Retos Técnicos y Soluciones
+* **Tipado Estricto en Datos Dinámicos:** Implementé interfaces de **TypeScript** para asegurar la integridad de los registros, eliminando errores en tiempo de ejecución al manejar cálculos monetarios y fechas.
+* **Transformación de Datos:** Desarrollé lógica personalizada (usando `reduce` y `map`) para procesar listas de registros planos en datasets estructurados para los gráficos de **Recharts**.
+* **Arquitectura Desacoplada:** Utilicé **Custom Hooks** para separar la lógica de negocio y persistencia (`LocalStorage`) de la interfaz de usuario, facilitando el mantenimiento y futuras integraciones con backend.
+* **UX en Dashboards Complejos:** Logré una interfaz responsiva que adapta tablas de datos y gráficos a pantallas móviles sin sacrificar la legibilidad.
 
-## Expanding the ESLint configuration
+## 🚀 CI/CD y Automatización
+El proyecto cuenta con un flujo de trabajo automatizado mediante **GitHub Actions**. Cada actualización en la rama `main` dispara un proceso de integración continua que compila el código en TypeScript y actualiza la versión de producción en la rama `gh-pages` de forma automática.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## ⚙️ Instalación Local
+1.  Clonar el repositorio:
+    ```bash
+    git clone [https://github.com/Saoc1108/mantenimiento-auto.git](https://github.com/Saoc1108/mantenimiento-auto.git)
+    ```
+2.  Instalar dependencias:
+    ```bash
+    npm install
+    ```
+3.  Lanzar el entorno de desarrollo:
+    ```bash
+    npm run dev
+    ```
