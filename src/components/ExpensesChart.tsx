@@ -70,7 +70,7 @@ export const ExpensesChart = ({ records }: Props) => {
               formatter={(value: any) => [`$${Number(value).toLocaleString()}`, 'Gasto Total']}
             />
             <Bar dataKey="monto" radius={[4, 4, 0, 0]}>
-              {data.map((entry, index) => (
+              {data.map((_, index) => (
                 <Cell key={`cell-${index}`} fill={index === data.length - 1 ? '#2563eb' : '#93c5fd'} />
               ))}
             </Bar>
