@@ -4,7 +4,7 @@ import type { MaintenanceRecord, MaintenanceRule } from '../types';
 export const INITIAL_DATA: MaintenanceRecord[] = [
   {
     id: '1',
-    date: '2023-05-10',
+    date: '2026-02-06',
     description: 'Cambio de Kit de Embrague',
     category: 'Transmisión',
     mileage: 145000,
@@ -13,7 +13,7 @@ export const INITIAL_DATA: MaintenanceRecord[] = [
   },
   {
     id: '2',
-    date: '2023-11-15',
+    date: '2026-01-28',
     description: 'Cambio de Aceite de Caja 75W-90',
     category: 'Transmisión',
     mileage: 152000,
@@ -22,7 +22,7 @@ export const INITIAL_DATA: MaintenanceRecord[] = [
   },
   {
     id: '3',
-    date: '2024-01-20',
+    date: '2026-01-20',
     description: 'Cambio de Aceite Motor 10W-40',
     category: 'Motor',
     mileage: 155000,
