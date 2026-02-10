@@ -5,23 +5,25 @@ Esta aplicación nació de una necesidad práctica, no de un tutorial. Estoy res
 [Puedes ver la demo en vivo aqui](https://saoc1108.github.io/mantenimiento-auto/)
 
 ## El Stack
-No quise reinventar la rueda, pero sí asegurar robustez. El núcleo es React 18 con TypeScript (usando Vite). Para la interfaz elegí Tailwind CSS; necesitaba iterar rápido en el diseño y asegurar que se viera bien en el celular cuando estoy en el taller. La visualización de datos corre por cuenta de Recharts, y Lucide maneja la iconografía.
+No quise reinventar la rueda, pero sí asegurar robustez. El núcleo es React 18 con TypeScript (usando Vite). Para la interfaz elegí Tailwind CSS; necesitaba iterar rápido en el diseño y asegurar que se viera bien en el celular cuando estoy en el taller. La visualización de datos corre por cuenta de Recharts, Lucide maneja la iconografía y **Vitest** se encarga de asegurar que la lógica no se rompa.
 
 ## Cómo está construido
-Lo más interesante del desarrollo no fue el CRUD básico, sino la lógica de negocio detrás del mantenimiento:
+Lo más interesante del desarrollo no fue el CRUD básico, sino la lógica de negocio detrás del mantenimiento y la calidad del código:
 
-Salud del Motor: Implementé un algoritmo que compara el kilometraje actual contra el último servicio registrado. Te avisa visualmente si el aceite o pastillas están en zona de riesgo.
+* **Salud del Motor:** Implementé un algoritmo que compara el kilometraje actual contra el último servicio registrado. Te avisa visualmente si el aceite o pastillas están en zona de riesgo.
 
-Manejo de Datos y Tipado: Aquí con TypeScript, definí interfaces estrictas para evitar errores con las fechas o cálculos monetarios.
+* **Manejo de Datos y Tipado Estricto:** Eliminé el uso de `any`. Con TypeScript, definí interfaces estrictas (`MaintenanceAlert`, `MaintenanceRecord`) para evitar errores silenciosos con las fechas o cálculos monetarios.
 
-Transformación de Datos para Recharts: Implementé una lógica de agregación en tiempo de ejecución utilizando reduce y map. Esto permite procesar el historial crudo y calcular métricas dinámicas —como el gasto mensual y acumulado— antes de renderizar los componentes visuales.
+* **Testing y Calidad:** Implementé **Smoke Tests** y pruebas unitarias con **Vitest**. Esto valida automáticamente que la lógica crítica (como el cálculo de costos y las alertas de kilometraje) funcione correctamente antes de subir cualquier cambio.
 
-Arquitectura: Para no ensuciar los componentes, extraje la lógica de persistencia (LocalStorage) y las reglas de negocio a Custom Hooks. Esto desacopla la vista de los datos y, si el día de mañana quiero conectarlo a un backend real (Firebase o Supabase), el refactor será mínimo.
+* **Transformación de Datos:** Implementé una lógica de agregación en tiempo de ejecución utilizando `reduce` y `map`. Esto permite procesar el historial crudo y calcular métricas dinámicas —como el gasto mensual y acumulado— antes de renderizar los gráficos.
 
-Soberanía de Datos: Como por ahora es local-first, añadí una función para exportar e importar todo el estado en un JSON. Es mi backup manual.
+* **Arquitectura Modular:** Para mantener el código limpio, atomicé la interfaz en componentes reutilizables (`StatusCard`, `MaintenanceList`) y extraje la lógica de persistencia y reglas de negocio a **Custom Hooks** (`useMaintenance`). Esto desacopla la vista de los datos y facilita el mantenimiento.
+
+* **Soberanía de Datos:** Como por ahora es local-first, añadí una función para exportar e importar todo el estado en un JSON. Es mi backup manual.
 
 ## CI/CD
-El despliegue es automático. Configuré un workflow en GitHub Actions que, al detectar un push en main, compila el proyecto y actualiza la rama gh-pages. Cero intervención manual para ver los cambios en producción.
+El despliegue es automático. Configuré un workflow en GitHub Actions que, al detectar un push en main, ejecuta los tests, compila el proyecto y actualiza la rama gh-pages. Cero intervención manual para ver los cambios en producción.
 
 
 ## Instalación Local
