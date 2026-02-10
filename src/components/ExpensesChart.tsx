@@ -1,40 +1,14 @@
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell } from 'recharts';
 import type { MaintenanceRecord } from '../types';
+import { processData } from '../utils/chartUtils'; // <--- Importamos la lógica
 
 interface Props {
   records: MaintenanceRecord[];
 }
 
 export const ExpensesChart = ({ records }: Props) => {
-  const processData = () => {
-    const groupedData: Record<string, number> = {};
-
-    records.forEach(record => {
-      const monthKey = record.date.substring(0, 7); 
-      
-      if (!groupedData[monthKey]) {
-        groupedData[monthKey] = 0;
-      }
-      groupedData[monthKey] += record.cost;
-    });
-
-    return Object.entries(groupedData)
-      .map(([key, value]) => {
-        const [year, month] = key.split('-');
-        const dateObj = new Date(parseInt(year), parseInt(month) - 1);
-        const label = dateObj.toLocaleDateString('es-ES', { month: 'short', year: '2-digit' });
-        
-        return {
-          originalDate: key, // Para ordenar
-          name: label,       // Para mostrar (Eje X)
-          monto: value       // Para la barra (Eje Y)
-        };
-      })
-      .sort((a, b) => a.originalDate.localeCompare(b.originalDate))
-      .slice(-6);
-  };
-
-  const data = processData();
+  // Usamos la función extraída
+  const data = processData(records);
 
   if (data.length === 0) {
     return (
